@@ -13,6 +13,8 @@ const buttonMapping = {
     12: 'HOME'
 }
 
+const pressedButtons = document.querySelector('#buttonsPressed');
+
 if (!('ongamepadconnected' in window)) {
   // No gamepad events available, poll instead.
   interval = setInterval(pollGamepads, 100);
@@ -23,11 +25,21 @@ function pollGamepads() {
   for (var i = 0; i < gamepads.length; i++) {
     var gp = gamepads[i];
     if (!!gp) {
+        let pressed = [];
       for(let i = 0; i < gp.buttons.length; i++) {
+          
+
           if(gp.buttons[i].pressed) {
-              console.log(buttonMapping[i]);
+              pressed.push(buttonMapping[i]);
           }
+
       }
+
+        if(pressed.length === 0) {
+            pressedButtons.innerHTML = 'No button pressed at the moment...';
+        } else {
+            pressedButtons.innerHTML = pressed.join(' + ');
+        }
     }
   }
 }
