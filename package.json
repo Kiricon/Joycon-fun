@@ -1,0 +1,23 @@
+{
+  "name": "joycon-fun",
+  "version": "1.0.0",
+  "description": "Connecting a joycon to a webpage",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kiricon/Joycon-fun.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kiricon/Joycon-fun/issues"
+  },
+  "homepage": "https://github.com/Kiricon/Joycon-fun#readme",
+  "dependencies": {
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1"
+  }
+}
