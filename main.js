@@ -30,14 +30,23 @@ const pressedButtons = document.querySelector('#buttonsPressed');
 if (!('ongamepadconnected' in window)) {
   // No gamepad events available, poll instead.
   interval = setInterval(pollGamepads, 100);
+  let gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
+  console.log(gamepads);
 }
 
 function pollGamepads() {
   let gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
+  let gamepadArray = [];
+  for(let i = 0; i < gamepads.length; i++) {
+    gamepadArray.push(gamepads[i]);
+  }
+  let orderedGamepads = [];
+  orderedGamepads.push(gamepadArray.find(g => g.id.indexOf('Joy-Con (R)') > -1));
+  orderedGamepads.push(gamepadArray.find(g => g.id.indexOf('Joy-Con (L)') > -1));
   let pressed = [];
 
-    for (let g = 0; g < gamepads.length; g++) {
-        const gp = gamepads[g];
+    for (let g = 0; g < orderedGamepads.length; g++) {
+        const gp = orderedGamepads[g];
         if (!!gp) {
             
             for(let i = 0; i < gp.buttons.length; i++) {
