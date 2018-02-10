@@ -30,8 +30,6 @@ const pressedButtons = document.querySelector('#buttonsPressed');
 if (!('ongamepadconnected' in window)) {
   // No gamepad events available, poll instead.
   interval = setInterval(pollGamepads, 100);
-  let gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
-  console.log(gamepads);
 }
 
 function pollGamepads() {
