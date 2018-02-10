@@ -1,5 +1,8 @@
 let interval;
+const input = document.querySelector('#input');
 
+// Mapping button index to each button
+// Each joycon contains 16 buttons indexed
 const buttonMapping = {
     0: 'A',
     1: 'X',
@@ -7,25 +10,24 @@ const buttonMapping = {
     3: 'Y',
     4: 'RSL',
     5: 'RSR',
+    9: 'PLUS',
+    11: 'RA',
+    12: 'HOME',
     14: 'R',
     15: 'RT',
-    9: 'PLUS',
-    12: 'HOME',
-    11: 'RA',
-    26: 'LA',
+    16: 'LEFT',
+    17: 'DOWN',
     18: 'UP',
     19: 'RIGHT',
-    17: 'DOWN',
-    16: 'LEFT',
-    31: 'LT',
-    30: 'L',
-    24: 'MINUS',
-    29: 'CAPTURE',
+    20: 'LSL',
     21: 'LSR',
-    20: 'LSL'
+    24: 'MINUS',
+    26: 'LA',
+    29: 'CAPTURE',
+    30: 'L',
+    31: 'LT'  
 }
 
-const pressedButtons = document.querySelector('#buttonsPressed');
 
 if (!('ongamepadconnected' in window)) {
   // No gamepad events available, poll instead.
@@ -33,7 +35,7 @@ if (!('ongamepadconnected' in window)) {
 }
 
 function pollGamepads() {
-  let gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
+  let gamepads = navigator.getGamepads ? navigator.getGamepads() : [];
   let gamepadArray = [];
   for(let i = 0; i < gamepads.length; i++) {
     gamepadArray.push(gamepads[i]);
@@ -62,8 +64,8 @@ function pollGamepads() {
         }
     }
     if(pressed.length === 0) {
-        pressedButtons.innerHTML = 'No button pressed at the moment...';
+        input.innerHTML = 'No button pressed at the moment...';
     } else {
-        pressedButtons.innerHTML = pressed.join(' + ');
+        input.innerHTML = pressed.join(' + ');
     }
 }
