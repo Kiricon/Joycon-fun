@@ -1,4 +1,4 @@
-var interval;
+let interval;
 
 const buttonMapping = {
     0: 'A',
@@ -23,7 +23,6 @@ const buttonMapping = {
     29: 'CAPTURE',
     21: 'LSR',
     20: 'LSL'
-
 }
 
 const pressedButtons = document.querySelector('#buttonsPressed');
@@ -31,12 +30,10 @@ const pressedButtons = document.querySelector('#buttonsPressed');
 if (!('ongamepadconnected' in window)) {
   // No gamepad events available, poll instead.
   interval = setInterval(pollGamepads, 100);
-  var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
-  console.log(gamepads);
 }
 
 function pollGamepads() {
-  var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
+  let gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
   let pressed = [];
 
     for (let g = 0; g < gamepads.length; g++) {
